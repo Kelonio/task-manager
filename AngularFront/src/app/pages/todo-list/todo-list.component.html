@@ -1,0 +1,39 @@
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Edit Todo Task</h4>
+      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <app-todo-editor [todoEdited]="todoSelected" (changedTodoEvent)="onChangeTodoEdited($event)" ></app-todo-editor>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+    </div>
+</ng-template>
+  
+
+
+<h4>You have  <span class="badge bg-primary">{{todoList.length}}</span> todo tasks
+    with 
+    <span class="badge bg-success">{{ completedTodos(todoList) }}</span>
+    completed, you may create a <button class="btn btn-sm btn-outline-primary" (click)="editTodo()">new</button> one
+</h4>
+
+<ngb-accordion [closeOthers]="true" >  
+  <ngb-panel id="todo-{{i}}" *ngFor="let todo of todoList; index as i ">
+    <ng-template ngbPanelTitle>
+      <div class="mx-auto" ><b>{{todo.title}}</b>
+        <fa-icon [icon]="faCheck" class="px-2" *ngIf="todo.completed" ></fa-icon>
+      </div>
+           
+    </ng-template>
+    <ng-template ngbPanelContent>
+     {{ todo.text}}
+     
+     <button class="btn btn-lg btn-outline-primary" (click)="editTodo(todo)">Edit</button>
+     <button class="btn btn-lg btn-outline-danger" (click)="deleteTodo(todo)">Delete</button>
+    </ng-template>    
+  </ngb-panel>  
+</ngb-accordion>
