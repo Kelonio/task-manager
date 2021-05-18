@@ -12,13 +12,15 @@ import { LoginComponent } from './pages/login/login.component';
 import { authInterceptorProviders } from './interceptor/auth.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RegistryComponent } from './pages/registry/registry.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     TodoListComponent,
     TodoEditorComponent,
-    LoginComponent
+    LoginComponent,
+    RegistryComponent
   ],
   imports: [
     BrowserModule,

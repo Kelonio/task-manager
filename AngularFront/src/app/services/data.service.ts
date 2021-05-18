@@ -2,8 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Todo } from '../models/todo.model';
+import { environment } from './../../environments/environment';
 
-const API_URL = 'http://localhost:8000/api/';
+const API_URL = environment.apiUrl + '/api/';
+
 
 @Injectable({
   providedIn: 'root'

@@ -13,18 +13,24 @@
           <a class="nav-link active" aria-current="List" routerLink="/list">MY TODO LIST</a>
         </li>
       </ul>
+     
       <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
         <li class="nav-item">
           <a href="/login" class="nav-link" routerLink="login">Login</a>
         </li>
       </ul>
+      <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
+        <li class="nav-item">
+          <a href="/registry" class="nav-link" routerLink="registry">Register</a>
+        </li>
+      </ul>
   
       <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
         <li class="nav-item">
-          <a href="/profile" class="nav-link" routerLink="profile">{{ username }}</a>
+          <h4>{{ username }}</h4>
         </li>
         <li class="nav-item">
-          <a href class="nav-link" (click)="logout()">LogOut</a>
+          <a href class="nav-link" (click)="logout()">Log Out</a>
         </li>
       </ul>      
     </div>
