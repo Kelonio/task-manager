@@ -72,7 +72,7 @@ export class TodoListComponent implements OnInit {
   }
    
   async editTodo(todo?:Todo){ 
-    this.todoSelected = todo || { id:0,text:''} as Todo;   
+    this.todoSelected = todo || { id:0,text:'',completed:false} as Todo;   
     this.modalReference = await this.modalService.open(this.modalContent);
   }
 
@@ -95,7 +95,6 @@ export class TodoListComponent implements OnInit {
   }
 
   completedTodos(todos:Todo[]){
-
     return todos.filter(t => t.completed == true).length;
 
   }

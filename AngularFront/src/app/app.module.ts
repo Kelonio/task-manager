@@ -14,6 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RegistryComponent } from './pages/registry/registry.component';
 
+import { AuthGuard } from './services/auth.guard';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +33,7 @@ import { RegistryComponent } from './pages/registry/registry.component';
     HttpClientModule,
     FontAwesomeModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

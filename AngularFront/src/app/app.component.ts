@@ -1,4 +1,6 @@
 import { Component,  OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { AuthService } from './services/auth.service';
 import { TokenStorageService } from './services/token-storage.service';
 
 @Component({
@@ -7,25 +9,34 @@ import { TokenStorageService } from './services/token-storage.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'mima-todo';  
-  isLoggedIn = false;
+  title = 'mima-todo';
   username?: string;
 
-  constructor(private tokenStorageService: TokenStorageService) { }
+  isLoggedIn: Observable<boolean>;
 
-  ngOnInit(): void {
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
+  constructor(private tokenStorageService: TokenStorageService, private authService: AuthService) { 
+    this.isLoggedIn = this.authService.isLoggedIn();
 
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.username = user;
-      console.log('user logeado ',this.username);
-    }
+    /* me subscribo para sacar el nombre*/
+    this.isLoggedIn.subscribe((val)=>{
+      if (val){
+        const user = this.tokenStorageService.getUser();
+        this.username = user;       
+
+      }else {
+        this.username = ""; //realmente no hace falta puesto que no se ve
+      }
+      
+    })
+  }
+
+  ngOnInit(): void {    
+   
   }
 
   logout(): void {
-    this.tokenStorageService.signOut();
-    window.location.reload();
+    this.authService.logOut();  
+    
   }
 
 }

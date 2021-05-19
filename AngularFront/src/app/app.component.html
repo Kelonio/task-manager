@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
@@ -8,24 +7,22 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="isLoggedIn">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0" *ngIf="(isLoggedIn | async)">
         <li class="nav-item">
           <a class="nav-link active" aria-current="List" routerLink="/list">MY TODO LIST</a>
         </li>
-      </ul>
-     
-      <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
-        <li class="nav-item">
+      </ul>     
+      
+      <ul class="navbar-nav ml-auto" *ngIf="!(isLoggedIn | async)">
+        <li class="nav-item">          
           <a href="/login" class="nav-link" routerLink="login">Login</a>
         </li>
-      </ul>
-      <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
         <li class="nav-item">
           <a href="/registry" class="nav-link" routerLink="registry">Register</a>
         </li>
       </ul>
   
-      <ul class="navbar-nav ml-auto" *ngIf="isLoggedIn">
+      <ul class="navbar-nav ml-auto" *ngIf="(isLoggedIn | async)">
         <li class="nav-item">
           <h4>{{ username }}</h4>
         </li>
